@@ -1,56 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class LaserCannons : MonoBehaviour
 {
-    [Header("Cannon Positions")]
-    [SerializeField] Transform cannon;
-    [SerializeField] Vector3 globalMousePos;
-
-    [Space]
-
-    [Header("Stats")]
-    [SerializeField] LayerMask damagable;
-    [SerializeField] GameObject laserObj;
-    [SerializeField] Material laser_C;
-    [SerializeField] bool firing;
-    [SerializeField] int ammo;
-    [SerializeField] float cooldown, damage;
-    [SerializeField] float laserSpeed;
-
-    [Space]
-
-    [Header("Color")]
-    [SerializeField] CustomShip laserColor;
-
-    void Awake(){
-        laserColor = GetComponent<CustomShip>();
-    }
+    [SerializeField] shootKey = KeyCode.Space; //Shooting key
+    [SerializeField] GameObject laserObj; //The laser prefab
+    [Header("Settings")]
+    [SerializeField] float cooldown = 1.0f; //Time before shooting again
+    [SerializeField] float dmg, distance; //The damage of lasers and the 
+    [SerializeField] bool firing, joystick; //The firing input and joystick controls
 
     void Start(){
-        switch(laserColor.c_Pallet){
-            case CustomShip.CustomPallet.RandomColors:
-                Debug.Log("Random Colors");
-                break;
-            default:
-                laser_C.color = new Color(1f, 0.5f, 0f);
-                break;
-        }
+        
     }
 
     void FixedUpdate(){
-        if(firing) ShootBullet();
+        //Ternary for how the firing is going to work
+        firing = joystick ? Input.GetButtonDown("Fire1") : Input.GetKeyDown(shootKey);
+        if(firing) Shoot();
     }
 
-    void ShootBullet(){
+    //The functionality for how the shooting will work
+    void Shoot(){
         RaycastHit hit;
-        
-
-        
-    }
-
-    void Cooldown(){
-
+        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, distance) { //Ray based laser shot
+            Instantiate(laserObj);
+            laserObj.GetComponent<NavMeshAgent>().destination = hit.point;
+        }
     }
 }
