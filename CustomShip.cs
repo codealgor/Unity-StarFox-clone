@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Gets each part of the ship and changes the materials
 public class CustomShip : MonoBehaviour
 {
-    // Gets each part of the ship and changes the materials
     [Header("Customizables")]
     [SerializeField] Color[] shipPaint = new Color[3];
     [SerializeField] Material[] paintables = new Material[3];
@@ -28,7 +28,7 @@ public class CustomShip : MonoBehaviour
                     index++;
                 }
                 break;
-            case CustomPallet.Flag: //Changes the color of the ship to the 3 primary colors of the user's current flag
+            case CustomPallet.Flag: //Changes the color of the ship to the 3 primary colors of the user's current flag(currently only the US flag)
                 paintables[0].color = Color.red;
                 paintables[1].color = Color.white;
                 paintables[2].color = Color.blue;
