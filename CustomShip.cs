@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Gets each part of the ship and changes the materials
 public class CustomShip : MonoBehaviour
 {
+    // Gets each part of the ship and changes the materials
     [Header("Customizables")]
     [SerializeField] Color[] shipPaint = new Color[3];
     [SerializeField] Material[] paintables = new Material[3];
@@ -12,7 +12,6 @@ public class CustomShip : MonoBehaviour
     // A list of preset designs that change the colors
     public enum CustomPallet{
         RandomColors,
-        Flag, // Location based
         Monotone
     }
 
@@ -28,11 +27,6 @@ public class CustomShip : MonoBehaviour
                     index++;
                 }
                 break;
-            case CustomPallet.Flag: //Changes the color of the ship to the 3 primary colors of the user's current flag(currently only the US flag)
-                paintables[0].color = Color.red;
-                paintables[1].color = Color.white;
-                paintables[2].color = Color.blue;
-                break;
             case CustomPallet.Monotone: //Makes the ship greyscale
                 paintables[0].color = Color.grey;
                 paintables[1].color = Color.black;
@@ -45,7 +39,6 @@ public class CustomShip : MonoBehaviour
     }
 
     void RandomizeColorsAt(int index){
-        if(randomColors) paintables[index].color = new Color(Random.value, Random.value, Random.value);
-        else paintables[index].color = shipPaint[index];
+        paintables[index].color = new Color(Random.value, Random.value, Random.value);
     }
 }
