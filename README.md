@@ -1,3 +1,3 @@
-# Unity-StarFox-clone
+# Unity-QuickFire-By_SeanKunonga
 This game is made to teach the structure of code blocks like functions and classes
-Currently the game is using entirely original or otherwise modified assets, like the 3d models and the audio effects
+The game uses entirely original assets, from the 3d models to the sound effects
